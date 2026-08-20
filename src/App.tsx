@@ -763,6 +763,8 @@ function ContactSection() {
    Footer
 ───────────────────────────────────────── */
 function Footer({ onNavigate }: { onNavigate: (page: string) => void }) {
+  const [certificateOpen, setCertificateOpen] = useState(false);
+
   return (
     <footer className="relative py-10" style={{ background: "#03091a", borderTop: "1px solid rgba(26,61,140,0.35)" }}>
       <div className="max-w-7xl mx-auto px-6">
@@ -781,8 +783,7 @@ function Footer({ onNavigate }: { onNavigate: (page: string) => void }) {
             ))}
             <a
               href={dataPolicyCertificate}
-              target="_blank"
-              rel="noreferrer"
+              onClick={(event) => { event.preventDefault(); setCertificateOpen(true); }}
               className="text-xs tracking-wider transition-colors duration-200 hover:text-orange-400"
               style={{ fontFamily: "JetBrains Mono, monospace", color: "#1e3a5f" }}
             >
@@ -791,6 +792,70 @@ function Footer({ onNavigate }: { onNavigate: (page: string) => void }) {
           </div>
         </div>
       </div>
+      {certificateOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Data Privacy Certificate"
+          onClick={() => setCertificateOpen(false)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 100,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "24px",
+            background: "rgba(1, 5, 16, 0.92)",
+            backdropFilter: "blur(10px)",
+          }}
+        >
+          <div
+            onClick={(event) => event.stopPropagation()}
+            style={{
+              position: "relative",
+              width: "min(100%, 980px)",
+              maxHeight: "calc(100vh - 48px)",
+              padding: "12px",
+              background: "linear-gradient(145deg, rgba(20, 45, 92, 0.96), rgba(3, 9, 26, 0.98))",
+              border: "1px solid rgba(251, 146, 60, 0.55)",
+              borderRadius: "8px",
+              boxShadow: "0 20px 80px rgba(0, 0, 0, 0.55), 0 0 35px rgba(234, 88, 12, 0.16)",
+            }}
+          >
+            <div className="flex items-center justify-between gap-4 px-2 pb-3">
+              <div>
+                <div className="text-xs tracking-widest" style={{ fontFamily: "JetBrains Mono, monospace", color: "#fb923c" }}>DATA POLICY</div>
+                <div className="text-sm" style={{ color: "#e8f0f8" }}>NPC Certificate of Registration</div>
+              </div>
+              <div className="flex items-center gap-2">
+                <a
+                  href={dataPolicyCertificate}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Open certificate full size"
+                  className="btn-outline-navy px-3 py-2 text-xs"
+                  style={{ fontFamily: "JetBrains Mono, monospace" }}
+                >
+                  MAXIMIZE ↗
+                </a>
+                <button
+                  type="button"
+                  onClick={() => setCertificateOpen(false)}
+                  aria-label="Close certificate"
+                  className="btn-orange px-3 py-2 text-xs"
+                  style={{ fontFamily: "JetBrains Mono, monospace" }}
+                >
+                  CLOSE
+                </button>
+              </div>
+            </div>
+            <div style={{ overflow: "auto", maxHeight: "calc(100vh - 140px)", borderRadius: "4px", background: "#fff" }}>
+              <img src={dataPolicyCertificate} alt="RCC Colab Solutions Inc Data Privacy Certificate" style={{ display: "block", width: "100%", height: "auto" }} />
+            </div>
+          </div>
+        </div>
+      )}
     </footer>
   );
 }
