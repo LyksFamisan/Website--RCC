@@ -1674,32 +1674,13 @@ interface ChatMessage {
   text: string;
 }
 
-function getBotResponse(input: string): string {
-  const q = input.toLowerCase();
-  if (q.includes("service") || q.includes("offer") || q.includes("what do you")) {
-    return "We offer 11 IT services:\n• Application Modernization\n• Custom Software Development\n• Staff Augmentation\n• IT Strategy & Consulting\n• Robotic Process Automation (RPA)\n• Cloud Solutions & Migration\n• System Integration\n• Managed IT Services\n• QA & Software Testing\n• POS & Kiosk Systems\n• Data Analytics & BI\n\nWhich would you like to know more about?";
-  }
-  if (q.includes("location") || q.includes("address") || q.includes("where") || q.includes("office")) {
-    return "Our office is located at:\n📍 7/F Ascott Makati Glorietta 4\nAyala Center San Lorenzo\nMakati City, Philippines\n\nOffice hours: Mon–Fri, 8:00 AM – 7:00 PM.";
-  }
-  if (q.includes("phone") || q.includes("call") || q.includes("contact") || q.includes("reach")) {
-    return "You can reach us at:\n📞 +632 8651 6572\n✉️ info@rcccolabsolutions.com\n\nOffice hours: Mon–Fri, 8:00 AM – 7:00 PM. Managed IT support is available 24/7!";
-  }
-  if (q.includes("quote") || q.includes("pricing") || q.includes("cost") || q.includes("price") || q.includes("rate")) {
-    return "Pricing depends on your specific needs and project scope. Please fill out our contact form on this page or call +632 8651 6572 and our team will prepare a custom quote for you — usually within 24 hours!";
-  }
-  if (q.includes("hello") || q.includes("hi") || q.includes("hey") || q.includes("good")) {
-    return "Hello! 👋 Great to hear from you. How can RCC Colab Solutions help you today? You can ask about our services, location, pricing, or how to get started.";
-  }
-  return "I'll connect you with our team for that. Please use the contact form on this page or call us directly at +632 8651 6572. We respond within 24 hours!";
-}
-
 function FloatingChatbot() {
   const [chatOpen, setChatOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
     { id: 1, role: "bot", text: "Hi! I'm RCC.Ai 👋 Your AI assistant for RCC Colab Solutions. Ask me anything about our services, location, pricing, or how to get started!" },
   ]);
   const [input, setInput] = useState("");
+  const [isThinking, setIsThinking] = useState(false);
   const [position, setPosition] = useState({ x: window.innerWidth - 90, y: window.innerHeight - 110 });
   const isDragging = useRef(false);
   const hasDragged = useRef(false);
@@ -1756,13 +1737,33 @@ function FloatingChatbot() {
     if (!hasDragged.current) setChatOpen((o) => !o);
   };
 
+  const askAi = async (text: string) => {
+    const history = [...messages, { id: nextId.current, role: "user" as const, text }]
+      .map(({ role, text: messageText }) => ({ role: role === "bot" ? "assistant" : "user", content: messageText }));
+    setIsThinking(true);
+    try {
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: history }),
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || "AI request failed");
+      setMessages((current) => [...current, { id: nextId.current++, role: "bot", text: data.reply }]);
+    } catch {
+      setMessages((current) => [...current, { id: nextId.current++, role: "bot", text: "I’m temporarily unavailable. Please use the contact form or email info@rcccolabsolutions.com and our team will help you." }]);
+    } finally {
+      setIsThinking(false);
+    }
+  };
+
   const sendMessage = () => {
     const text = input.trim();
-    if (!text) return;
+    if (!text || isThinking) return;
     const userMsg: ChatMessage = { id: nextId.current++, role: "user", text };
-    const botMsg: ChatMessage = { id: nextId.current++, role: "bot", text: getBotResponse(text) };
-    setMessages((m) => [...m, userMsg, botMsg]);
+    setMessages((m) => [...m, userMsg]);
     setInput("");
+    void askAi(text);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -1771,9 +1772,10 @@ function FloatingChatbot() {
 
   const quickActions = ["Our Services", "Location", "Get Quote", "Contact"];
   const handleQuick = (label: string) => {
+    if (isThinking) return;
     const userMsg: ChatMessage = { id: nextId.current++, role: "user", text: label };
-    const botMsg: ChatMessage = { id: nextId.current++, role: "bot", text: getBotResponse(label) };
-    setMessages((m) => [...m, userMsg, botMsg]);
+    setMessages((m) => [...m, userMsg]);
+    void askAi(label);
   };
 
   return (
@@ -1847,6 +1849,7 @@ function FloatingChatbot() {
               <button
                 key={label}
                 onClick={() => handleQuick(label)}
+                disabled={isThinking}
                 style={{
                   padding: "4px 10px",
                   borderRadius: "20px",
@@ -1872,6 +1875,7 @@ function FloatingChatbot() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
+              disabled={isThinking}
               placeholder="Ask RCC.Ai anything..."
               style={{
                 flex: 1,
@@ -1887,6 +1891,7 @@ function FloatingChatbot() {
             />
             <button
               onClick={sendMessage}
+              disabled={isThinking}
               style={{
                 width: "36px",
                 height: "36px",
