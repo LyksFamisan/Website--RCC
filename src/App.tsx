@@ -650,7 +650,7 @@ function ContactSection() {
                 { icon: "📞", label: "PHONE", value: "+632 8651 6572", sub: "Mon – Fri: 8:00 AM – 7:00 PM", isHours: false },
                 { icon: "✉️", label: "EMAIL", value: "info@rcccolabsolutions.com", sub: "We reply within 24 hours", isHours: false },
                 { icon: "🌐", label: "WEBSITE", value: "rcccolabsolutions.com", sub: "Visit our online presence", isHours: false },
-                { icon: "🕐", label: "OFFICE HOURS", value: "Mon – Fri", sub: "8:00 AM – 7:00 PM · Managed IT support 24/7", isHours: true },
+                { icon: "🕐", label: "OFFICE HOURS", value: "Mon – Fri", sub: "8:00 AM – 7:00 PM", isHours: true },
               ].map(({ icon, label, value, sub, isHours }) => (
                 <div key={label} className="flex gap-4 p-4 rounded" style={{ background: "rgba(10,28,70,0.45)", border: "1px solid rgba(26,61,140,0.3)" }}>
                   <div className="w-10 h-10 rounded flex items-center justify-center flex-shrink-0 text-lg" style={{ background: "rgba(234,88,12,0.1)" }}>{icon}</div>
