@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import rccLogo from "@/assets/Content-Creator-Project.png";
 import rccMascot from "@/assets/image-3.png";
+import dataPolicyCertificate from "@/assets/Certificate.png";
 
 /* ─────────────────────────────────────────
    Programming Technology Background Canvas
@@ -778,6 +779,15 @@ function Footer({ onNavigate }: { onNavigate: (page: string) => void }) {
                 {link.toUpperCase()}
               </a>
             ))}
+            <a
+              href={dataPolicyCertificate}
+              target="_blank"
+              rel="noreferrer"
+              className="text-xs tracking-wider transition-colors duration-200 hover:text-orange-400"
+              style={{ fontFamily: "JetBrains Mono, monospace", color: "#1e3a5f" }}
+            >
+              DATA POLICY
+            </a>
           </div>
         </div>
       </div>
