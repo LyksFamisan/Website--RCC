@@ -727,8 +727,8 @@ function ContactSection() {
               <label className="block text-xs mb-2 tracking-widest" style={{ fontFamily: "JetBrains Mono, monospace", color: "#7ba7c9" }}>SERVICE INTEREST</label>
               <select name="service" value={form.service} onChange={(e) => setForm({ ...form, service: e.target.value })} required className="w-full px-4 py-3 text-sm rounded" style={{ ...inputBase, color: form.service ? "#e8f0f8" : "#94a3b8" }} onFocus={onFocus} onBlur={onBlur}>
                 <option value="" disabled>Select a service...</option>
-                {SERVICES.map((s) => <option key={s.title} value={s.title}>{s.title}</option>)}
-                <option value="other">General Inquiry</option>
+                {SERVICES.map((s) => <option key={s.title} value={s.title} style={{ color: "#e8f0f8", background: "#0a1c46" }}>{s.title}</option>)}
+                <option value="other" style={{ color: "#e8f0f8", background: "#0a1c46" }}>General Inquiry</option>
               </select>
             </div>
             <div className="mb-6">
