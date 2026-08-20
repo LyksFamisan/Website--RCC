@@ -652,7 +652,7 @@ function ContactSection() {
           </h2>
           <div className="neon-line-orange max-w-xs mx-auto mt-6" />
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 gap-12">
           <div>
             <div className="space-y-4 mb-8">
               {[
@@ -719,7 +719,7 @@ function ContactSection() {
               </div>
             </div>
           </div>
-          <form action="https://formsubmit.co/info@rcccolabsolutions.com" method="POST" className="p-8 rounded" style={{ background: "rgba(5,14,31,0.9)", border: "1px solid rgba(26,61,140,0.4)" }}>
+          <form action="https://formsubmit.co/info@rcccolabsolutions.com" method="POST" className="p-8 rounded max-w-4xl mx-auto w-full" style={{ background: "rgba(5,14,31,0.9)", border: "1px solid rgba(26,61,140,0.4)" }}>
             <h3 className="text-xl font-bold mb-6" style={{ fontFamily: "Rajdhani, sans-serif", color: "#e8f0f8", letterSpacing: "0.06em" }}>
               SEND US A <span className="gradient-text">MESSAGE</span>
             </h3>
