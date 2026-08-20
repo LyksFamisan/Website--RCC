@@ -615,19 +615,6 @@ function AboutSection() {
 ───────────────────────────────────────── */
 function ContactSection() {
   const [form, setForm] = useState({ name: "", email: "", service: "", message: "" });
-  const [sent, setSent] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const subject = encodeURIComponent(`Inquiry: ${form.service || "General"} — ${form.name}`);
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\nService: ${form.service}\n\nMessage:\n${form.message}`
-    );
-    window.location.href = `mailto:lykafamisan@rcccolabsolutions.com?subject=${subject}&body=${body}`;
-    setSent(true);
-    setTimeout(() => setSent(false), 5000);
-    setForm({ name: "", email: "", service: "", message: "" });
-  };
 
   const inputBase = {
     fontFamily: "Inter, sans-serif",
@@ -721,26 +708,24 @@ function ContactSection() {
               </div>
             </div>
           </div>
-          <form onSubmit={handleSubmit} className="p-8 rounded" style={{ background: "rgba(5,14,31,0.9)", border: "1px solid rgba(26,61,140,0.4)" }}>
+          <form action="https://formsubmit.co/lykafamisan@rcccolabsolutions.com" method="POST" className="p-8 rounded" style={{ background: "rgba(5,14,31,0.9)", border: "1px solid rgba(26,61,140,0.4)" }}>
             <h3 className="text-xl font-bold mb-6" style={{ fontFamily: "Rajdhani, sans-serif", color: "#e8f0f8", letterSpacing: "0.06em" }}>
               SEND US A <span className="gradient-text">MESSAGE</span>
             </h3>
-            {sent && (
-              <div className="mb-6 p-3 rounded text-sm text-center" style={{ fontFamily: "JetBrains Mono, monospace", color: "#fb923c", background: "rgba(234,88,12,0.08)", border: "1px solid rgba(234,88,12,0.35)" }}>
-                ✓ OPENING EMAIL TO info@rcccolabsolutions.com — SEND TO REACH US
-              </div>
-            )}
+            <input type="hidden" name="_subject" value="New RCC Colab Solutions inquiry" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_captcha" value="false" />
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
               {[{ key: "name", placeholder: "Your Name", label: "FULL NAME" }, { key: "email", placeholder: "you@company.com", label: "EMAIL ADDRESS" }].map(({ key, placeholder, label }) => (
                 <div key={key}>
                   <label className="block text-xs mb-2 tracking-widest" style={{ fontFamily: "JetBrains Mono, monospace", color: "#7ba7c9" }}>{label}</label>
-                  <input type={key === "email" ? "email" : "text"} placeholder={placeholder} value={form[key as keyof typeof form]} onChange={(e) => setForm({ ...form, [key]: e.target.value })} required className="w-full px-4 py-3 text-sm rounded" style={inputBase} onFocus={onFocus} onBlur={onBlur} />
+                  <input name={key === "name" ? "name" : "email"} type={key === "email" ? "email" : "text"} placeholder={placeholder} value={form[key as keyof typeof form]} onChange={(e) => setForm({ ...form, [key]: e.target.value })} required className="w-full px-4 py-3 text-sm rounded" style={inputBase} onFocus={onFocus} onBlur={onBlur} />
                 </div>
               ))}
             </div>
             <div className="mb-4">
               <label className="block text-xs mb-2 tracking-widest" style={{ fontFamily: "JetBrains Mono, monospace", color: "#7ba7c9" }}>SERVICE INTEREST</label>
-              <select value={form.service} onChange={(e) => setForm({ ...form, service: e.target.value })} required className="w-full px-4 py-3 text-sm rounded" style={{ ...inputBase, color: form.service ? "#e8f0f8" : "#94a3b8" }} onFocus={onFocus} onBlur={onBlur}>
+              <select name="service" value={form.service} onChange={(e) => setForm({ ...form, service: e.target.value })} required className="w-full px-4 py-3 text-sm rounded" style={{ ...inputBase, color: form.service ? "#e8f0f8" : "#94a3b8" }} onFocus={onFocus} onBlur={onBlur}>
                 <option value="" disabled>Select a service...</option>
                 {SERVICES.map((s) => <option key={s.title} value={s.title}>{s.title}</option>)}
                 <option value="other">General Inquiry</option>
@@ -748,7 +733,7 @@ function ContactSection() {
             </div>
             <div className="mb-6">
               <label className="block text-xs mb-2 tracking-widest" style={{ fontFamily: "JetBrains Mono, monospace", color: "#7ba7c9" }}>MESSAGE</label>
-              <textarea placeholder="Describe your project, challenge, or question..." value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} required rows={5} className="w-full px-4 py-3 text-sm rounded resize-none" style={inputBase} onFocus={onFocus} onBlur={onBlur} />
+              <textarea name="message" placeholder="Describe your project, challenge, or question..." value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} required rows={5} className="w-full px-4 py-3 text-sm rounded resize-none" style={inputBase} onFocus={onFocus} onBlur={onBlur} />
             </div>
             <button type="submit" className="w-full py-4 font-bold tracking-wider btn-orange" style={{ fontFamily: "Rajdhani, sans-serif", fontSize: "15px", letterSpacing: "0.14em" }}>
               SEND MESSAGE
