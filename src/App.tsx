@@ -933,12 +933,6 @@ function DetailPageCTA({ onNavigate }: { onNavigate: (page: string) => void }) {
 function DataPrivacyPage({ onNavigate }: { onNavigate: (page: string) => void }) {
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
-  const resources = [
-    { label: "RA 10173 Data Privacy Act of 2012", href: "https://privacy.gov.ph/data-privacy-act/" },
-    { label: "Know Your Data Privacy Rights", href: "https://privacy.gov.ph/know-your-rights/" },
-    { label: "YSBP Privacy Notice", href: "https://privacy.gov.ph/" },
-  ];
-
   return (
     <main>
       <DetailPageHeader
@@ -949,34 +943,13 @@ function DataPrivacyPage({ onNavigate }: { onNavigate: (page: string) => void })
         breadcrumb="DATA PRIVACY"
       />
       <section className="py-16 md:py-24" style={{ background: "#f8fafc" }}>
-        <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          <div>
-            <div className="mb-8">
-              <div className="text-sm font-bold tracking-wider mb-4" style={{ fontFamily: "Rajdhani, sans-serif", color: "#1a5db5" }}>DATA PRIVACY ACT</div>
-              <h2 className="font-black mb-5" style={{ fontFamily: "Rajdhani, sans-serif", color: "#0b2a6f", fontSize: "clamp(2rem, 4vw, 3.2rem)", lineHeight: 1.05 }}>Your privacy matters.</h2>
-              <p className="text-base leading-relaxed" style={{ color: "#334155" }}>Learn how to handle your personal information responsibly by reviewing these trusted resources and our official certificate.</p>
-            </div>
-            <div className="space-y-2">
-              {resources.map((resource) => (
-                <a key={resource.label} href={resource.href} target="_blank" rel="noreferrer" className="block py-3 text-lg font-semibold transition-colors hover:text-orange-500" style={{ color: "#087cff", fontFamily: "Inter, sans-serif" }}>
-                  {resource.label} <span aria-hidden="true">↗</span>
-                </a>
-              ))}
-              <a href={dataPolicyCertificate} target="_blank" rel="noreferrer" className="block py-3 text-lg font-semibold transition-colors hover:text-orange-500" style={{ color: "#087cff", fontFamily: "Inter, sans-serif" }}>
-                NPC Registration Certificate <span aria-hidden="true">↗</span>
-              </a>
-              <a href={dataPolicyCertificate} target="_blank" rel="noreferrer" className="block py-3 text-lg font-semibold transition-colors hover:text-orange-500" style={{ color: "#087cff", fontFamily: "Inter, sans-serif" }}>
-                COR Seal <span aria-hidden="true">↗</span>
-              </a>
-            </div>
-          </div>
-          <div className="relative">
-            <div className="absolute -inset-3 rounded-lg" style={{ background: "linear-gradient(135deg, rgba(26,93,181,0.22), rgba(234,88,12,0.18))" }} />
-            <div className="relative rounded-lg overflow-hidden" style={{ border: "1px solid rgba(26,61,140,0.3)", background: "white", boxShadow: "0 20px 50px rgba(6,14,32,0.18)" }}>
-              <img src={dataPolicyCertificate} alt="RCC Colab Solutions Inc NPC Registration Certificate" style={{ display: "block", width: "100%", height: "auto" }} />
-              <a href={dataPolicyCertificate} target="_blank" rel="noreferrer" className="absolute bottom-4 right-4 px-4 py-2 text-xs font-bold tracking-wider btn-orange" style={{ fontFamily: "JetBrains Mono, monospace" }}>VIEW FULL SIZE ↗</a>
-            </div>
-          </div>
+        <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+          {["NPC Registration Certificate", "COR Seal"].map((title) => (
+            <a key={title} href={dataPolicyCertificate} target="_blank" rel="noreferrer" className="group block rounded-lg overflow-hidden" style={{ background: "white", border: "1px solid rgba(26,61,140,0.2)", boxShadow: "0 16px 40px rgba(6,14,32,0.12)" }}>
+              <img src={dataPolicyCertificate} alt={title} style={{ display: "block", width: "100%", height: "auto" }} />
+              <div className="px-5 py-4 text-lg font-bold transition-colors group-hover:text-orange-500" style={{ fontFamily: "Rajdhani, sans-serif", color: "#0b2a6f" }}>{title}</div>
+            </a>
+          ))}
         </div>
       </section>
     </main>
