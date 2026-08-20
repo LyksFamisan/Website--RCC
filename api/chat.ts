@@ -26,7 +26,9 @@ export default async function handler(request: VercelRequest, response: VercelRe
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${process.env.OPENAI_API_KEY}` },
     body: JSON.stringify({ model: process.env.OPENAI_MODEL || "gpt-4o-mini", temperature: 0.4, max_tokens: 500, messages: [{ role: "system", content: SYSTEM_PROMPT }, ...messages] }),
   });
-  if (!aiResponse.ok) return response.status(502).json({ error: "AI provider request failed" });
+  if (!aiResponse.ok) {
+    return response.status(502).json({ error: `AI provider request failed (${aiResponse.status})` });
+  }
 
   const result = await aiResponse.json();
   return response.status(200).json({ reply: result.choices?.[0]?.message?.content || "Please contact info@rcccolabsolutions.com for assistance." });
