@@ -623,7 +623,7 @@ function ContactSection() {
     const body = encodeURIComponent(
       `Name: ${form.name}\nEmail: ${form.email}\nService: ${form.service}\n\nMessage:\n${form.message}`
     );
-    window.location.href = `mailto:info@rcccolabsolutions.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:lykafamisan@rcccolabsolutions.com?subject=${subject}&body=${body}`;
     setSent(true);
     setTimeout(() => setSent(false), 5000);
     setForm({ name: "", email: "", service: "", message: "" });
