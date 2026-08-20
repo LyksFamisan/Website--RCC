@@ -258,14 +258,14 @@ function NavBar({ onNavigate }: { onNavigate: (page: string) => void }) {
             style={{ width: "auto", display: "block", filter: "brightness(0) invert(1)" }}
           />
         </button>
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-9">
           {links.map(({ label, href }) => (
             <a
               key={label}
               href={href}
               onClick={() => onNavigate("home")}
-              className="text-sm font-medium tracking-wider transition-all duration-300 hover:text-orange-400"
-              style={{ fontFamily: "Inter, sans-serif", color: "#cbd5e1" }}
+              className="font-medium tracking-wider transition-all duration-300 hover:text-orange-400"
+              style={{ fontFamily: "Inter, sans-serif", color: "#cbd5e1", fontSize: "16px" }}
             >
               {label}
             </a>
@@ -273,8 +273,8 @@ function NavBar({ onNavigate }: { onNavigate: (page: string) => void }) {
           <a
             href="#contact"
             onClick={() => onNavigate("home")}
-            className="px-5 py-2 text-sm font-semibold tracking-wider btn-orange"
-            style={{ fontFamily: "Rajdhani, sans-serif", letterSpacing: "0.1em" }}
+            className="px-6 py-3 font-semibold tracking-wider btn-orange"
+            style={{ fontFamily: "Rajdhani, sans-serif", fontSize: "16px", letterSpacing: "0.1em" }}
           >
             GET A QUOTE
           </a>
