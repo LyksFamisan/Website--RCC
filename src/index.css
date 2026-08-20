@@ -38,8 +38,11 @@ body {
   overflow-x: hidden;
 }
 
+.nav-logo { height: 58px; }
+
 @media (max-width: 767px) {
   body { font-size: 16px; }
+  .nav-logo { height: 42px; }
 }
 
 @keyframes pulse-orange {

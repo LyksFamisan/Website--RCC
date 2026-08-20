@@ -235,7 +235,7 @@ function NavBar({ onNavigate }: { onNavigate: (page: string) => void }) {
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
       style={{
         margin: 0,
-        height: "55px",
+        height: "72px",
         boxShadow: "none",
         filter: "none",
         position: "fixed",
@@ -254,7 +254,8 @@ function NavBar({ onNavigate }: { onNavigate: (page: string) => void }) {
           <img
             src={rccLogo}
             alt="RCC Colab Solutions Inc"
-            style={{ height: "42px", width: "auto", display: "block", filter: "brightness(0) invert(1)" }}
+            className="nav-logo"
+            style={{ width: "auto", display: "block", filter: "brightness(0) invert(1)" }}
           />
         </button>
         <div className="hidden md:flex items-center gap-8">
