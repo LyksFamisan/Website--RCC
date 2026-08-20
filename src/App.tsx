@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import rccLogo from "@/assets/Content-Creator-Project.png";
-import rccMascot from "@/assets/image-3.png";
+import rccMascot from "@/assets/RCC.ai assistant.png";
 import dataPolicyCertificate from "@/assets/Certificate.png";
 import corSeal from "@/assets/COR SEAL.png";
 
