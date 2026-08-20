@@ -350,7 +350,7 @@ function HeroSection() {
           className="font-black mb-5 leading-none whitespace-nowrap hero-title"
           style={{
             fontFamily: "Rajdhani, sans-serif",
-            fontSize: "clamp(2.4rem, 5vw, 5rem)",
+            fontSize: "clamp(2.4rem, 4.2vw, 4.25rem)",
             color: "#ffffff",
             letterSpacing: "0.04em",
             textShadow: "0 0 60px rgba(26,61,140,0.5)",
@@ -360,7 +360,7 @@ function HeroSection() {
         </h1>
         <div className="neon-line-orange max-w-xs mx-auto mb-6" />
         <p
-          className="text-base md:text-lg max-w-2xl mx-auto mb-6 font-light leading-relaxed"
+          className="text-base md:text-lg max-w-3xl mx-auto mb-6 font-light leading-relaxed"
           style={{ fontFamily: "Inter, sans-serif", color: "#94a3b8" }}
         >
           End-to-end technology services engineered to solve complex challenges
