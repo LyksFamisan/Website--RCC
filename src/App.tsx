@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import rccLogo from "@/assets/Content-Creator-Project.png";
 import rccMascot from "@/assets/image-3.png";
 import dataPolicyCertificate from "@/assets/Certificate.png";
+import corSeal from "@/assets/COR SEAL.png";
 
 /* ─────────────────────────────────────────
    Programming Technology Background Canvas
@@ -944,9 +945,9 @@ function DataPrivacyPage({ onNavigate }: { onNavigate: (page: string) => void })
       />
       <section className="py-16 md:py-24" style={{ background: "#f8fafc" }}>
         <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
-          {["NPC Registration Certificate", "COR Seal"].map((title) => (
-            <a key={title} href={dataPolicyCertificate} target="_blank" rel="noreferrer" className="group block rounded-lg overflow-hidden" style={{ background: "white", border: "1px solid rgba(26,61,140,0.2)", boxShadow: "0 16px 40px rgba(6,14,32,0.12)" }}>
-              <img src={dataPolicyCertificate} alt={title} style={{ display: "block", width: "100%", height: "auto" }} />
+          {[{ title: "NPC Registration Certificate", image: dataPolicyCertificate }, { title: "COR Seal", image: corSeal }].map(({ title, image }) => (
+            <a key={title} href={image} target="_blank" rel="noreferrer" className="group block rounded-lg overflow-hidden" style={{ background: "white", border: "1px solid rgba(26,61,140,0.2)", boxShadow: "0 16px 40px rgba(6,14,32,0.12)" }}>
+              <img src={image} alt={title} style={{ display: "block", width: "100%", height: "auto" }} />
               <div className="px-5 py-4 text-lg font-bold transition-colors group-hover:text-orange-500" style={{ fontFamily: "Rajdhani, sans-serif", color: "#0b2a6f" }}>{title}</div>
             </a>
           ))}
