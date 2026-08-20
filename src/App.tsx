@@ -1674,6 +1674,13 @@ interface ChatMessage {
   text: string;
 }
 
+function renderChatText(text: string) {
+  return text.split(/(https?:\/\/[^\s]+)/g).map((part, index) => {
+    if (!part.startsWith("http")) return <span key={index}>{part}</span>;
+    return <a key={index} href={part.replace(/[.,)]$/, "")} target="_blank" rel="noreferrer" style={{ color: "#7dd3fc", textDecoration: "underline" }}>{part}</a>;
+  });
+}
+
 function FloatingChatbot() {
   const [chatOpen, setChatOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
@@ -1770,7 +1777,7 @@ function FloatingChatbot() {
     if (e.key === "Enter") sendMessage();
   };
 
-  const quickActions = ["Our Services", "Location", "Get Quote", "Contact"];
+  const quickActions = ["Our Services", "CEO / Founder", "Location", "Get Quote", "Contact"];
   const handleQuick = (label: string) => {
     if (isThinking) return;
     const userMsg: ChatMessage = { id: nextId.current++, role: "user", text: label };
@@ -1836,7 +1843,7 @@ function FloatingChatbot() {
                     wordBreak: "break-word",
                   }}
                 >
-                  {msg.text}
+                  {renderChatText(msg.text)}
                 </div>
               </div>
             ))}
