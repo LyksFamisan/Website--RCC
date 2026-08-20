@@ -947,8 +947,8 @@ function DataPrivacyPage({ onNavigate }: { onNavigate: (page: string) => void })
         <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
           {[{ title: "NPC Registration Certificate", image: dataPolicyCertificate }, { title: "COR Seal", image: corSeal }].map(({ title, image }) => (
             <a key={title} href={image} target="_blank" rel="noreferrer" className="group block rounded-lg overflow-hidden" style={{ background: "white", border: "1px solid rgba(26,61,140,0.2)", boxShadow: "0 16px 40px rgba(6,14,32,0.12)" }}>
-              <img src={image} alt={title} style={{ display: "block", width: "100%", height: "auto" }} />
               <div className="px-5 py-4 text-lg font-bold transition-colors group-hover:text-orange-500" style={{ fontFamily: "Rajdhani, sans-serif", color: "#0b2a6f" }}>{title}</div>
+              <img src={image} alt={title} style={{ display: "block", width: "100%", height: "auto" }} />
             </a>
           ))}
         </div>
