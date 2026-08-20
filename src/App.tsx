@@ -333,7 +333,7 @@ function HeroSection() {
         className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none"
         style={{ background: "linear-gradient(to bottom, transparent, #060e20)" }}
       />
-      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
         <div
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 text-xs font-medium tracking-widest"
           style={{
@@ -347,10 +347,10 @@ function HeroSection() {
           TECHNOLOGY · COLLABORATION · INNOVATION
         </div>
         <h1
-          className="font-black mb-5 leading-none"
+          className="font-black mb-5 leading-none whitespace-nowrap hero-title"
           style={{
             fontFamily: "Rajdhani, sans-serif",
-            fontSize: "clamp(2.4rem, 7vw, 6rem)",
+            fontSize: "clamp(2.4rem, 5vw, 5rem)",
             color: "#ffffff",
             letterSpacing: "0.04em",
             textShadow: "0 0 60px rgba(26,61,140,0.5)",

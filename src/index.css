@@ -43,6 +43,7 @@ body {
 @media (max-width: 767px) {
   body { font-size: 16px; }
   .nav-logo { height: 42px; }
+  .hero-title { white-space: normal; }
 }
 
 @keyframes pulse-orange {
