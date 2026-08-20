@@ -1,0 +1,11 @@
+{
+  "title": "RCC-website -OPT",
+  "description": "Showcases Ltechwerk's electrical products, software development, and hardware solutions with engaging visuals and easy contact options for clients.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
