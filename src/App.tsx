@@ -3,6 +3,7 @@ import rccLogo from "@/assets/Content-Creator-Project.png";
 import rccMascot from "@/assets/RCC.ai assistant.png";
 import dataPolicyCertificate from "@/assets/Certificate.png";
 import corSeal from "@/assets/COR SEAL.png";
+import servicesImage from "@/assets/Services.png";
 
 /* ─────────────────────────────────────────
    Programming Technology Background Canvas
@@ -583,13 +584,22 @@ function AboutSection() {
             </div>
           </div>
           <div className="relative">
-            <div className="rounded overflow-hidden" style={{ border: "1px solid rgba(26,61,140,0.4)" }}>
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
+              <div className="rounded overflow-hidden" style={{ border: "1px solid rgba(26,61,140,0.4)" }}>
               <img
                 src="https://images.unsplash.com/photo-1758073519996-6d3c63b4922c?w=700&h=500&fit=crop&auto=format"
                 alt="Abstract blue glowing technology network"
                 className="w-full h-80 object-cover"
                 style={{ filter: "brightness(0.65) saturate(1.3)" }}
               />
+              </div>
+              <div className="rounded overflow-hidden self-start" style={{ border: "1px solid rgba(26,61,140,0.4)", background: "rgba(10,28,70,0.45)" }}>
+                <div className="px-4 py-2 flex items-center gap-2" style={{ background: "rgba(10,28,70,0.6)", borderBottom: "1px solid rgba(26,61,140,0.3)" }}>
+                  <span style={{ color: "#ea580c", fontSize: "14px" }}>◈</span>
+                  <span className="text-xs tracking-wider" style={{ fontFamily: "JetBrains Mono, monospace", color: "#7ba7c9" }}>OUR TECHNOLOGY SERVICES</span>
+                </div>
+                <img src={servicesImage} alt="Our Technology Services" style={{ display: "block", width: "100%", height: "auto" }} />
+              </div>
             </div>
           </div>
         </div>

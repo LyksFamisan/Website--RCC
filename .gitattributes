@@ -10,6 +10,7 @@ src/assets/image-3.png -filter -diff -merge
 src/assets/Certificate.png -filter -diff -merge
 src/assets/COR?SEAL.png -filter -diff -merge
 src/assets/RCC?ai?assistant.png -filter -diff -merge
+src/assets/Services.png -filter -diff -merge
 *.jpg                filter=lfs diff=lfs merge=lfs -text
 *.jpeg               filter=lfs diff=lfs merge=lfs -text
 *.gif                filter=lfs diff=lfs merge=lfs -text
