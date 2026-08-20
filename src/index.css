@@ -34,7 +34,12 @@ body {
   background-color: #060e20;
   color: #e8f0f8;
   font-family: 'Inter', sans-serif;
+  font-size: 17px;
   overflow-x: hidden;
+}
+
+@media (max-width: 767px) {
+  body { font-size: 16px; }
 }
 
 @keyframes pulse-orange {

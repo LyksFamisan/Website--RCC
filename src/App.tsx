@@ -347,7 +347,7 @@ function HeroSection() {
           className="font-black mb-5 leading-none"
           style={{
             fontFamily: "Rajdhani, sans-serif",
-            fontSize: "clamp(2.4rem, 7vw, 5.5rem)",
+            fontSize: "clamp(2.4rem, 7vw, 6rem)",
             color: "#ffffff",
             letterSpacing: "0.04em",
             textShadow: "0 0 60px rgba(26,61,140,0.5)",
