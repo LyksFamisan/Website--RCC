@@ -1805,8 +1805,8 @@ function FloatingChatbot() {
           {/* Header */}
           <div style={{ background: "#ea580c", padding: "12px 14px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-              <div style={{ width: "28px", height: "28px", background: "rgba(255,255,255,0.2)", borderRadius: "6px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <span style={{ fontSize: "14px" }}>🤖</span>
+              <div style={{ width: "32px", height: "32px", background: "#060e20", border: "1px solid rgba(255,255,255,0.35)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
+                <img src={rccMascot} alt="RCC.Ai assistant" style={{ width: "100%", height: "100%", objectFit: "contain", padding: "2px" }} />
               </div>
               <div>
                 <div style={{ fontFamily: "Rajdhani, sans-serif", fontWeight: 700, color: "#fff", fontSize: "15px", letterSpacing: "0.05em" }}>RCC.Ai</div>
